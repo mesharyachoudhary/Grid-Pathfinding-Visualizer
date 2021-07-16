@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Grid-Pathfinding-Visualizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**A web application to visualize various pathfinding algorithms on a Grid**
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+#### Cloning the repository:
 
-### `npm start`
+- Clone the repository using `git clone https://github.com/mesharyachoudhary/Grid-Pathfinding-Visualizer.git`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Installing dependencies:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Run `npm install`
 
-### `npm test`
+## Starting the server:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Run `npm start`.
+- Open http://localhost:3000 to view it in the browser.
 
-### `npm run build`
+<img src="./pictures/p1.png" width="800">
+ 
+## Positioning the start and end node
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+_You can move the start and end node to which ever cell you want by dragging and dropping_
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img src="./pictures/p2.png" width="800">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Adding walls
 
-### `npm run eject`
+- _You can add walls to which ever cells you want by clicking the mouse and dragging it and the same goes for removing them_
+- _You can also toggle between wall cell and normal cell_
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src="./pictures/p3.png" width="800">
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Generation of Path
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+_Generate the path using whichever algorithm you want by clicking on the corresponding button_
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Visualization of Path
 
-## Learn More
+_Visualize the generated path by clicking the Visualize Path Button_
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## For example these are the visualized paths for the A-Star,Greedy Best First Search and Dijkstra Algorithm
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+_Dijkstra in the midst of visualization_
+<img src="./pictures/p7.png" width="800">
+_A Star_
+<img src="./pictures/p4.png" width="800">
+_Greedy Best First Search_
+<img src="./pictures/p5.png" width="800">
 
-### Code Splitting
+## After visualization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- _After visualization you can reposition start and end node as you want and add and delete walls as you wish and visualize using any algorithm again without reloading the webpage_
 
-### Analyzing the Bundle Size
+- _We moved the start node out of that square and removed one of the walls_
+  <img src="./pictures/p6.png" width="800">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+_This Project was built by_
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Mesharya M Choudhary](https://github.com/mesharyachoudhary)
+- [Akshat Arun](https://github.com/akshatarun)

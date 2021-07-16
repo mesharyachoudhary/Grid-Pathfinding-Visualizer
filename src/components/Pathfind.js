@@ -4,6 +4,7 @@ import Astar from '../algorithms/astar'
 import Dijkstra from '../algorithms/dijkstra'
 import DFS from '../algorithms/dfs'
 import BFS from '../algorithms/bfs'
+import GreedyBFS from '../algorithms/greedybfs'
 import './Pathfind.css'
 
 const rows = 18;
@@ -460,6 +461,74 @@ const Pathfind = () => {
         //console.log(Grid);
         
     }
+    const callGreedyBFS = ()=> {
+        //console.log(Grid);
+        let startNode = {...Grid[NODE_START_ROW][NODE_START_COL]};
+        let endNode = {...Grid[NODE_END_ROW][NODE_END_COL]};
+        let tempg = [];
+        Grid.forEach(e => {
+            tempg.push(e.slice());
+        });
+        for(let i=0;i<rows;i++){
+            for(let j=0;j<cols;j++){
+                const node=tempg[i][j];
+                let new_node ={
+                    ...node, g: 0, f: 0, h: 0, previous: undefined, neighbours: []
+                };
+                tempg[i][j]=new_node;
+                //console.log(tempg[i][j]);
+            }
+        }
+        //console.log(tempg);
+        //createSpot(tempg);
+        
+        // let tempg = new Array(rows);
+        // for(let i=0;i<rows;i++){
+        //     tempg[i] = new Array(cols);
+        // }
+        //createSpot(tempg);
+        //console.log(Grid);
+        tempg[NODE_START_ROW][NODE_START_COL].isWall=false;
+        tempg[NODE_END_ROW][NODE_END_COL].isWall=false;
+        for(let i=0;i<rows;i++){
+            for(let j=0;j<cols;j++){
+                if(!tempg[i][j].isWall  && !(i===NODE_START_ROW && j===NODE_START_COL) && !(i===NODE_END_ROW && j===NODE_END_COL)){
+                    document.getElementById(`node-${i}-${j}`).className="node";
+                }else if(i===NODE_START_ROW && j===NODE_START_COL){
+                    document.getElementById(`node-${i}-${j}`).className="node node-start";
+                }else if(i===NODE_END_ROW && j===NODE_END_COL){
+                    document.getElementById(`node-${i}-${j}`).className="node node-end";
+                }
+            }
+        }
+        //console.log(Grid);
+        
+        //restartGrid();
+            //console.log(state);
+            
+            //console.log(Grid);
+           // console.log(Grid);
+            addNeighbours(tempg);
+            //console.log(Grid);
+            //console.log(Grid, startNode, endNode);
+            //setPath([]);
+        // setVisitedNodes([]);
+            //console.log(startNode,endNode);
+            //console.log(Grid);
+            let path = GreedyBFS(tempg[NODE_START_ROW][NODE_START_COL],tempg[NODE_END_ROW][NODE_END_COL]);
+            //console.log(Grid);
+            //console.log(path.path);
+            setPath(path.path);
+            setVisitedNodes(path.visitedNodes);
+            let oldGrid = tempg;
+            oldGrid[NODE_START_ROW][NODE_START_COL].isWall=startNode.isWall;
+            oldGrid[NODE_END_ROW][NODE_END_COL].isWall=endNode.isWall;
+            setGrid(oldGrid);
+       
+        //console.log("k");
+        //console.log(Grid);
+        
+    }
     const visualizePath = () =>{
        // console.log(Grid);
         for(let i=0;i<=VisitedNodes.length;i++){
@@ -484,6 +553,7 @@ const Pathfind = () => {
         <div className="wrapper">
             <div className="navbar"> 
             <button className="button button1"onClick={callAstar}>Generate Astar</button>
+            <button className="button button3" onClick={callGreedyBFS}>Generate GreedyBFS</button>
             <button className="button button3" onClick={callDijkstra}>Generate Dijkstra</button>
             <button className="button button3" onClick={callBFS}>Generate BFS</button>
             <button className="button button3" onClick={callDFS}>Generate DFS</button>

@@ -89,13 +89,13 @@
 }
 /* your colors */
 .legend .start {
-  background-color: lightgreen;
+  background-color: green;
   /*background-image: yahan start ka hoga*/
   background-size: cover;
   background-repeat: no-repeat;
 }
 .legend .end {
-  background-color: lightcoral;
+  background-color: red;
   /*background-image: yahan end ka*/
   background-size: cover;
   background-repeat: no-repeat;
@@ -108,6 +108,7 @@
 }
 .legend .wall {
   /*background-image: yahan wall ka*/
+  background-color: rgb(12, 53, 71);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
