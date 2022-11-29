@@ -34,10 +34,6 @@ const Pathfind = () => {
         }
 
         createSpot(grid);
-        // const startNode = grid[NODE_START_ROW][NODE_START_COL];
-        // const endNode = grid[NODE_END_ROW][NODE_END_COL];
-        // startNode.isWall = false;
-        // endNode.isWall = false;
         setGrid(grid);
     };
 
@@ -67,13 +63,10 @@ const Pathfind = () => {
         this.h = 0;
         this.neighbours = [];
         this.isWall =false;
-       // if(Math.random(1)<0.2){this.isWall=true;}
-        //this.onClick=()=>{this.isWall=true;}
         this.previous = undefined;
         this.addneighbours = function(grid){
             let i=this.x;
             let j=this.y;
-            //if(this.neighbours.length!==0){return ;}
             if(i>0){this.neighbours.push(grid[i-1][j]);}
             if(i<rows-1){this.neighbours.push(grid[i+1][j]);}
             if(j>0){this.neighbours.push(grid[i][j-1]);}
@@ -88,7 +81,6 @@ const Pathfind = () => {
     }
 
     const mouseUp = (row,col) =>{
-        //changeNodetype(row,col);
         if(clickedOnStart){
             NODE_START_ROW=row;
             NODE_START_COL=col;
@@ -100,7 +92,6 @@ const Pathfind = () => {
             clickedOnEnd=false;
         }
         isMouseDown=false;
-        //console.log(Grid);
     }
 
     const changeNodetype = (row,col) => {
@@ -115,11 +106,9 @@ const Pathfind = () => {
             else{
                 if(!((row===NODE_START_ROW && col===NODE_START_COL)||(row===NODE_END_ROW && col===NODE_END_COL))){
                     tempgrid[row][col].isWall=true;
-                   // console.log(11);
                 }
             }
-            //console.log(tempgrid);
-            //console.log(Grid);
+
         }
         if(clickedOnStart){
             tempgrid[row][col].isStart = true;
@@ -147,10 +136,8 @@ const Pathfind = () => {
                 tempgrid[row][col].isStart = true;
                 tempgrid[row][col].isEnd=false;
             }else{
-                //tempgrid[row][col].isWall=false;
                 tempgrid[row][col].isEnd=false;
                 tempgrid[row][col].isStart = false;
-                //console.log(Grid);
             }
         }
         setGrid(tempgrid);
@@ -162,7 +149,6 @@ const Pathfind = () => {
                     <div key={rowIndex} className="rowWrapper">
                         {row.map((col, colIndex) => {
                             const {isStart,isEnd,isWall} = col;
-                            //console.log(isMouseDown,rowIndex,colIndex);
                             return <Node key={colIndex} isStart={isStart}
                             isEnd={isEnd}
                             row={rowIndex} col={colIndex} isWall={isWall}
@@ -190,7 +176,6 @@ const Pathfind = () => {
 
 
     const callAstar = ()=> {
-        //console.log(Grid);
         let startNode = {...Grid[NODE_START_ROW][NODE_START_COL]};
         let endNode = {...Grid[NODE_END_ROW][NODE_END_COL]};
         let tempg = [];
@@ -204,18 +189,8 @@ const Pathfind = () => {
                     ...node, g: 0, f: 0, h: 0, previous: undefined, neighbours: []
                 };
                 tempg[i][j]=new_node;
-                //console.log(tempg[i][j]);
             }
         }
-        //console.log(tempg);
-        //createSpot(tempg);
-        
-        // let tempg = new Array(rows);
-        // for(let i=0;i<rows;i++){
-        //     tempg[i] = new Array(cols);
-        // }
-        //createSpot(tempg);
-        //console.log(Grid);
         tempg[NODE_START_ROW][NODE_START_COL].isWall=false;
         tempg[NODE_END_ROW][NODE_END_COL].isWall=false;
         for(let i=0;i<rows;i++){
@@ -229,23 +204,8 @@ const Pathfind = () => {
                 }
             }
         }
-        //console.log(Grid);
-        
-        //restartGrid();
-            //console.log(state);
-            
-            //console.log(Grid);
-           // console.log(Grid);
             addNeighbours(tempg);
-            //console.log(Grid);
-            //console.log(Grid, startNode, endNode);
-            //setPath([]);
-        // setVisitedNodes([]);
-            //console.log(startNode,endNode);
-            //console.log(Grid);
             let path = Astar(tempg[NODE_START_ROW][NODE_START_COL],tempg[NODE_END_ROW][NODE_END_COL]);
-            //console.log(Grid);
-            //console.log(path.path);
             setPath(path.path);
             setVisitedNodes(path.visitedNodes);
             let oldGrid = tempg;
@@ -253,12 +213,9 @@ const Pathfind = () => {
             oldGrid[NODE_END_ROW][NODE_END_COL].isWall=endNode.isWall;
             setGrid(oldGrid);
        
-        //console.log("k");
-        //console.log(Grid);
         
     }
     const callDijkstra = ()=> {
-        //console.log(Grid);
         let startNode = {...Grid[NODE_START_ROW][NODE_START_COL]};
         let endNode = {...Grid[NODE_END_ROW][NODE_END_COL]};
         let tempg = [];
@@ -272,18 +229,8 @@ const Pathfind = () => {
                     ...node, g: 0, f: 0, h: 0, previous: undefined, neighbours: []
                 };
                 tempg[i][j]=new_node;
-                //console.log(tempg[i][j]);
             }
         }
-        //console.log(tempg);
-        //createSpot(tempg);
-        
-        // let tempg = new Array(rows);
-        // for(let i=0;i<rows;i++){
-        //     tempg[i] = new Array(cols);
-        // }
-        //createSpot(tempg);
-        //console.log(Grid);
         tempg[NODE_START_ROW][NODE_START_COL].isWall=false;
         tempg[NODE_END_ROW][NODE_END_COL].isWall=false;
         for(let i=0;i<rows;i++){
@@ -297,23 +244,8 @@ const Pathfind = () => {
                 }
             }
         }
-        //console.log(Grid);
-        
-        //restartGrid();
-            //console.log(state);
-            
-            //console.log(Grid);
-           // console.log(Grid);
             addNeighbours(tempg);
-            //console.log(Grid);
-            //console.log(Grid, startNode, endNode);
-            //setPath([]);
-        // setVisitedNodes([]);
-            //console.log(startNode,endNode);
-            //console.log(Grid);
             let path = Dijkstra(tempg[NODE_START_ROW][NODE_START_COL],tempg[NODE_END_ROW][NODE_END_COL]);
-            //console.log(Grid);
-            //console.log(path.path);
             setPath(path.path);
             setVisitedNodes(path.visitedNodes);
             let oldGrid = tempg;
@@ -321,12 +253,9 @@ const Pathfind = () => {
             oldGrid[NODE_END_ROW][NODE_END_COL].isWall=endNode.isWall;
             setGrid(oldGrid);
        
-        //console.log("k");
-        //console.log(Grid);
         
     }
     const callBFS = ()=> {
-        //console.log(Grid);
         let startNode = {...Grid[NODE_START_ROW][NODE_START_COL]};
         let endNode = {...Grid[NODE_END_ROW][NODE_END_COL]};
         let tempg = [];
@@ -340,18 +269,9 @@ const Pathfind = () => {
                     ...node, g: 0, f: 0, h: 0, previous: undefined, neighbours: []
                 };
                 tempg[i][j]=new_node;
-                //console.log(tempg[i][j]);
             }
         }
-        //console.log(tempg);
-        //createSpot(tempg);
-        
-        // let tempg = new Array(rows);
-        // for(let i=0;i<rows;i++){
-        //     tempg[i] = new Array(cols);
-        // }
-        //createSpot(tempg);
-        //console.log(Grid);
+       
         tempg[NODE_START_ROW][NODE_START_COL].isWall=false;
         tempg[NODE_END_ROW][NODE_END_COL].isWall=false;
         for(let i=0;i<rows;i++){
@@ -365,23 +285,9 @@ const Pathfind = () => {
                 }
             }
         }
-        //console.log(Grid);
-        
-        //restartGrid();
-            //console.log(state);
-            
-            //console.log(Grid);
-           // console.log(Grid);
+
             addNeighbours(tempg);
-            //console.log(Grid);
-            //console.log(Grid, startNode, endNode);
-            //setPath([]);
-        // setVisitedNodes([]);
-            //console.log(startNode,endNode);
-            //console.log(Grid);
             let path = BFS(tempg[NODE_START_ROW][NODE_START_COL],tempg[NODE_END_ROW][NODE_END_COL]);
-            //console.log(Grid);
-            //console.log(path.path);
             setPath(path.path);
             setVisitedNodes(path.visitedNodes);
             let oldGrid = tempg;
@@ -389,12 +295,9 @@ const Pathfind = () => {
             oldGrid[NODE_END_ROW][NODE_END_COL].isWall=endNode.isWall;
             setGrid(oldGrid);
        
-        //console.log("k");
-        //console.log(Grid);
         
     }
     const callDFS = ()=> {
-        //console.log(Grid);
         let startNode = {...Grid[NODE_START_ROW][NODE_START_COL]};
         let endNode = {...Grid[NODE_END_ROW][NODE_END_COL]};
         let tempg = [];
@@ -408,18 +311,8 @@ const Pathfind = () => {
                     ...node, g: 0, f: 0, h: 0, previous: undefined, neighbours: []
                 };
                 tempg[i][j]=new_node;
-                //console.log(tempg[i][j]);
             }
         }
-        //console.log(tempg);
-        //createSpot(tempg);
-        
-        // let tempg = new Array(rows);
-        // for(let i=0;i<rows;i++){
-        //     tempg[i] = new Array(cols);
-        // }
-        //createSpot(tempg);
-        //console.log(Grid);
         tempg[NODE_START_ROW][NODE_START_COL].isWall=false;
         tempg[NODE_END_ROW][NODE_END_COL].isWall=false;
         for(let i=0;i<rows;i++){
@@ -433,23 +326,9 @@ const Pathfind = () => {
                 }
             }
         }
-        //console.log(Grid);
-        
-        //restartGrid();
-            //console.log(state);
-            
-            //console.log(Grid);
-           // console.log(Grid);
             addNeighbours(tempg);
-            //console.log(Grid);
-            //console.log(Grid, startNode, endNode);
-            //setPath([]);
-        // setVisitedNodes([]);
-            //console.log(startNode,endNode);
-            //console.log(Grid);
+
             let path = DFS(tempg[NODE_START_ROW][NODE_START_COL],tempg[NODE_END_ROW][NODE_END_COL]);
-            //console.log(Grid);
-            //console.log(path.path);
             setPath(path.path);
             setVisitedNodes(path.visitedNodes);
             let oldGrid = tempg;
@@ -457,12 +336,9 @@ const Pathfind = () => {
             oldGrid[NODE_END_ROW][NODE_END_COL].isWall=endNode.isWall;
             setGrid(oldGrid);
        
-        //console.log("k");
-        //console.log(Grid);
         
     }
     const callGreedyBFS = ()=> {
-        //console.log(Grid);
         let startNode = {...Grid[NODE_START_ROW][NODE_START_COL]};
         let endNode = {...Grid[NODE_END_ROW][NODE_END_COL]};
         let tempg = [];
@@ -476,18 +352,9 @@ const Pathfind = () => {
                     ...node, g: 0, f: 0, h: 0, previous: undefined, neighbours: []
                 };
                 tempg[i][j]=new_node;
-                //console.log(tempg[i][j]);
             }
         }
-        //console.log(tempg);
-        //createSpot(tempg);
-        
-        // let tempg = new Array(rows);
-        // for(let i=0;i<rows;i++){
-        //     tempg[i] = new Array(cols);
-        // }
-        //createSpot(tempg);
-        //console.log(Grid);
+
         tempg[NODE_START_ROW][NODE_START_COL].isWall=false;
         tempg[NODE_END_ROW][NODE_END_COL].isWall=false;
         for(let i=0;i<rows;i++){
@@ -501,23 +368,8 @@ const Pathfind = () => {
                 }
             }
         }
-        //console.log(Grid);
-        
-        //restartGrid();
-            //console.log(state);
-            
-            //console.log(Grid);
-           // console.log(Grid);
             addNeighbours(tempg);
-            //console.log(Grid);
-            //console.log(Grid, startNode, endNode);
-            //setPath([]);
-        // setVisitedNodes([]);
-            //console.log(startNode,endNode);
-            //console.log(Grid);
             let path = GreedyBFS(tempg[NODE_START_ROW][NODE_START_COL],tempg[NODE_END_ROW][NODE_END_COL]);
-            //console.log(Grid);
-            //console.log(path.path);
             setPath(path.path);
             setVisitedNodes(path.visitedNodes);
             let oldGrid = tempg;
@@ -525,12 +377,9 @@ const Pathfind = () => {
             oldGrid[NODE_END_ROW][NODE_END_COL].isWall=endNode.isWall;
             setGrid(oldGrid);
        
-        //console.log("k");
-        //console.log(Grid);
         
     }
     const visualizePath = () =>{
-       // console.log(Grid);
         for(let i=0;i<=VisitedNodes.length;i++){
            if(i===VisitedNodes.length){
             setTimeout(() => {
@@ -548,7 +397,6 @@ const Pathfind = () => {
         }
     }
 
-    //console.log(Path);
     return (
         <div className="wrapper">
             <div className="navbar"> 
